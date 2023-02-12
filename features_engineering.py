@@ -23,8 +23,12 @@ def map_feature(x1, x2, degree):
     x1 = np.array(x1).reshape(-1, 1)
     x2 = np.array(x2).reshape(-1, 1)
 
-    out = ...
-    # TODO
+    out = np.ones(shape=(x1[:, 0].size, 1))  # TODO
+    for m in range(1, degree + 1):
+        for n in range(m + 1):
+            r = (x1 ** (m - n)) * (x2 ** n)
+            out = np.append(out, r, axis=1)
+
     return out
 
 

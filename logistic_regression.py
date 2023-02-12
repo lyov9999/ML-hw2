@@ -33,17 +33,17 @@ class CustomLogisticRegression:
 
         # gradient descent learning
         for i in range(self.iterations):
-            ...
+            self.update_weights()
         return self
 
     @staticmethod
     def sigmoid(X, W, b):
-        output = ...
+        output = 1 / ( 1 + np.exp(-(X.dot(W)+b)))
         return output
 
     # Helper function to update weights in gradient descent
     def update_weights(self):
-        A = ...
+        A = self.sigmoid(self.X, self.W, self.b)
 
         # calculate gradients
         difference = (A - self.Y.T)
@@ -59,5 +59,6 @@ class CustomLogisticRegression:
 
     # Hypothetical function h( x )
     def predict(self, X, threshold: float = 0.5):
-        ...
-        return ...
+        Z = self.sigmoid(X, self.W, self.b)       
+        Y = np.where( Z > threshold,1,0 )  
+        return Y
